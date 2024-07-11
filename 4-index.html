@@ -3,7 +3,7 @@
 
     <head>
         <meta charset="utf-8" />
-        <title>Task 3</title>
+        <title>Task 4</title>
 
     </head>
 
@@ -19,29 +19,44 @@
               $("<th>").text('Lastname')
             )
           );
-          table.append(
+
+          let tbody = $("<tbody>");
+          tbody.append(
             $("<tr>").append(
               $("<td>").text('Guillaume'),
               $("<td>").text('Salva'),
             )
           );
 
-          table.append(
+          tbody.append(
             $("<tr>").append(
               $("<td>").text('Paulette'),
               $("<td>").text('Salva'),
             )
           );
-          table.append(
+
+          tbody.append(
             $("<tr>").append(
               $("<td>").text('Antoine'),
               $("<td>").text('Salva'),
             )
           );
+
+          table.append(tbody);
           $('body').append(table);
         }
+
+        function replaceFamilyTree() {
+          let newRow = $("<tr>").append(
+            $("<td>").text('Gerard'),
+            $("<td>").text('Bonissa')
+          );
+          $("tbody").html(newRow);
+        }
+
         $(document).ready(function() {
           createFamilyTree();
+          replaceFamilyTree();
         });
       </script>
       </body>
