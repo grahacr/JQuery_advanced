@@ -10,54 +10,38 @@
     <body>
       <script src="https://code.jquery.com/jquery-3.7.1.slim.min.js" integrity="sha256-kmHvs0B+OpCW5GVHUNjv9rOmY0IvSIRcf7zGUDTDQM8=" crossorigin="anonymous"></script>
       <script type="application/javascript">
+
         function createFamilyTree() {
           let table = $("<table>");
-          
-          table.append(
-            $("<tr>").append(
-              $("<th>").text('Firstname'),
-              $("<th>").text('Lastname')
-            )
-          );
+          let headerRows = $("<tr>").appendTo(table);
+            $("<th>").text('Firstname').appendTo(headerRows);
+            $("<th>").text('Lastname').appendTo(headerRows);
 
-          let tbody = $("<tbody>");
-          tbody.append(
-            $("<tr>").append(
-              $("<td>").text('Guillaume'),
-              $("<td>").text('Salva'),
-            )
-          );
-
-          tbody.append(
-            $("<tr>").append(
-              $("<td>").text('Paulette'),
-              $("<td>").text('Salva'),
-            )
-          );
-
-          tbody.append(
-            $("<tr>").append(
-              $("<td>").text('Antoine'),
-              $("<td>").text('Salva'),
-            )
-          );
-
-          table.append(tbody);
-          $('body').append(table);
+            $("body").append(table);
+            return $("<tbody>").appendTo(table);
         }
-
-        function replaceFamilyTree() {
-          let newRow = $("<tr>").append(
-            $("<td>").text('Gerard'),
-            $("<td>").text('Bonissa')
-          );
-          $("tbody").html(newRow);
-        }
-
+        
         $(document).ready(function() {
-          createFamilyTree();
-          replaceFamilyTree();
-        });
+          let tbody = createFamilyTree();
+
+          function addNewMember(firstName, lastName) {
+            let row = $("<tr>").appendTo(tbody);
+            $("<td>").text(firstName).appendTo(row);
+            $("<td>").text(lastName).appendTo(row);
+            let xcell = $("<td>").text("(x)").appendTo(row);
+
+            xcell.on("click", function() {
+              $(this).closest("tr").remove();
+            });
+            xcell.css("background-color", "orange");
+          }
+
+            addNewMember("Guillaume", "Salva");
+            addNewMember("Arielle", "Snizt");
+            addNewMember("Fanette", "Snizt");
+            addNewMember("Gerard", "Snizt");
+            addNewMember("Victor", "Salva");
+          });
       </script>
       </body>
 
